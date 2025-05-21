@@ -4,12 +4,12 @@ Este proyecto es una aplicación web desarrollada en **Java** utilizando **NetBe
 
 ## 📌 Funcionalidades principales
 
-- ✅ Registro y visualización de **historias clínicas** de pacientes.
-- ✅ Gestión de **pedidos de cita médica**.
-- ✅ Registro y visualización de **pagos** realizados por los pacientes.
-- ✅ Generación de **reportes** de atención médica.
-- ✅ Módulo de gestión de **horarios médicos**.
-- ✅ Interfaces basadas en **JSP** con estilos integrados en **Bootstrap**.
+✅ Registro y visualización de **historias clínicas** de pacientes.
+✅ Gestión de **pedidos de cita médica**.
+✅ Registro y visualización de **pagos** realizados por los pacientes.
+✅ Generación de **reportes** de atención médica.
+✅ Módulo de gestión de **horarios médicos**.
+✅ Interfaces basadas en **JSP** con estilos integrados en **Bootstrap**.
 
 ## 🛠️ Tecnologías utilizadas
 
