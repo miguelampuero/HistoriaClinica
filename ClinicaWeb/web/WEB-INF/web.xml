@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                             http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+
+    <display-name>ClinicaWeb</display-name>
+
+    <!-- Servlet: Programación de horarios médicos -->
+    <servlet>
+        <servlet-name>ProgramacionServlet</servlet-name>
+        <servlet-class>controlador.ProgramacionServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProgramacionServlet</servlet-name>
+        <url-pattern>/ProgramacionServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- Servlet: Registro de pacientes -->
+    <servlet>
+        <servlet-name>PacienteServlet</servlet-name>
+        <servlet-class>controlador.PacienteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PacienteServlet</servlet-name>
+        <url-pattern>/PacienteServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- Servlet: Solicitud de citas médicas -->
+    <servlet>
+        <servlet-name>CitaServlet</servlet-name>
+        <servlet-class>controlador.CitaServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CitaServlet</servlet-name>
+        <url-pattern>/CitaServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- Servlet: Registro de pagos -->
+    <servlet>
+        <servlet-name>PagoServlet</servlet-name>
+        <servlet-class>controlador.PagoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PagoServlet</servlet-name>
+        <url-pattern>/PagoServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- Servlet: Consulta de horarios médicos -->
+    <servlet>
+        <servlet-name>ConsultarHorarioServlet</servlet-name>
+        <servlet-class>controlador.ConsultarHorarioServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ConsultarHorarioServlet</servlet-name>
+        <url-pattern>/ConsultarHorarioServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- Servlet: Registro de médicos -->
+    <servlet>
+        <servlet-name>RegistrarMedicoServlet</servlet-name>
+        <servlet-class>controlador.RegistrarMedicoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RegistrarMedicoServlet</servlet-name>
+        <url-pattern>/RegistrarMedicoServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- Servlet: Historia clínica (ver historia clínica por paciente) -->
+    <servlet>
+        <servlet-name>HistoriaClinicaServlet</servlet-name>
+        <servlet-class>controlador.HistoriaClinicaServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HistoriaClinicaServlet</servlet-name>
+        <url-pattern>/verHistoriaClinica</url-pattern>
+    </servlet-mapping>
+
+    <!-- Servlet: Procesa solicitud para ver historia clínica -->
+    <servlet>
+        <servlet-name>VerHistoriaServlet</servlet-name>
+        <servlet-class>controlador.VerHistoriaServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VerHistoriaServlet</servlet-name>
+        <url-pattern>/verHistoria</url-pattern>
+    </servlet-mapping>
+
+    <!-- Página de inicio -->
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+
+</web-app>

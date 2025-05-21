@@ -1,0 +1,146 @@
+CREATE DATABASE IF NOT EXISTS clinicaweb;
+USE clinicaweb;
+
+-- Tabla Especialidad
+CREATE TABLE especialidad (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL
+);
+
+-- Tabla Medico
+CREATE TABLE medico (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    apellido VARCHAR(100) NOT NULL,
+    id_especialidad INT NOT NULL,
+    FOREIGN KEY (id_especialidad) REFERENCES especialidad(id)
+);
+
+-- Tabla Programacion
+CREATE TABLE programacion (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_medico INT NOT NULL,
+    fecha DATE NOT NULL,
+    hora_inicio TIME NOT NULL,
+    hora_fin TIME NOT NULL,
+    consultorio VARCHAR(50),
+    estado VARCHAR(20),
+    FOREIGN KEY (id_medico) REFERENCES medico(id)
+);
+
+describe programacion;
+
+-- Tabla Paciente
+CREATE TABLE paciente (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    dni VARCHAR(20) NOT NULL UNIQUE,
+    direccion VARCHAR(200),
+    telefono VARCHAR(20),
+    email VARCHAR(100)
+);
+
+-- Tabla Historia Clinica
+CREATE TABLE historia_clinica (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_paciente INT NOT NULL,
+    descripcion TEXT,
+    FOREIGN KEY (id_paciente) REFERENCES paciente(id)
+);
+
+-- Tabla Cita
+CREATE TABLE cita (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_paciente INT NOT NULL,
+    id_programacion INT NOT NULL,
+    estado VARCHAR(20),
+    fecha DATE,
+    FOREIGN KEY (id_paciente) REFERENCES paciente(id),
+    FOREIGN KEY (id_programacion) REFERENCES programacion(id)
+);
+
+-- Tabla Pago
+CREATE TABLE pago (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_cita INT NOT NULL,
+    monto DECIMAL(10,2) NOT NULL,
+    fecha_pago DATE NOT NULL,
+    FOREIGN KEY (id_cita) REFERENCES cita(id)
+);
+
+-- Especialidades
+INSERT INTO especialidad (nombre) VALUES 
+('Cardiología'),
+('Pediatría'),
+('Dermatología');
+
+-- Médicos
+INSERT INTO medico (nombre, apellido, id_especialidad) VALUES
+('Juan', 'Pérez', 1),
+('María', 'López', 2),
+('Carlos', 'García', 3);
+
+INSERT INTO medico (nombre, apellido, id_especialidad) VALUES
+('Miguel', 'Ampuero', 4);
+
+-- Pacientes
+INSERT INTO paciente (nombre, dni, direccion, telefono, email) VALUES
+('Luis Torres', '12345678', 'Av. Siempre Viva 123', '987654321', 'luis@mail.com'),
+('Ana Rivas', '87654321', 'Jr. Las Flores 456', '912345678', 'ana@mail.com');
+
+-- Historia clínica
+INSERT INTO historia_clinica (id_paciente, descripcion) VALUES
+(1, 'Paciente con antecedentes de hipertensión.'),
+(2, 'Niña con historial de alergias respiratorias.');
+
+-- Programación de horarios
+INSERT INTO programacion (id_medico, fecha, hora_inicio, hora_fin, consultorio, estado) VALUES
+(1, '2025-05-01', '09:00:00', '12:00:00', '101A', 'Disponible'),
+(2, '2025-05-01', '10:00:00', '13:00:00', '102B', 'Disponible');
+
+-- Citas
+INSERT INTO cita (id_paciente, id_programacion, estado, fecha) VALUES
+(1, 1, 'Confirmada', '2025-05-01'),
+(2, 2, 'Pendiente', '2025-05-01');
+
+-- Pagos
+INSERT INTO pago (id_cita, monto, fecha_pago) VALUES
+(1, 100.00, '2025-05-01');
+
+
+SELECT * FROM paciente;
+SELECT * FROM programacion;
+SELECT * FROM cita;
+SELECT * FROM pago;
+
+SELECT * FROM paciente WHERE id = 4;
+
+ALTER TABLE programacion ADD especialidad VARCHAR(100);
+
+
+INSERT INTO programacion (id_medico, fecha, hora_inicio, hora_fin, consultorio, estado, especialidad)
+VALUES (1, '2025-05-02', '08:00:00', '08:20:00', '101', 'Disponible', 'Pediatría');
+
+ALTER TABLE programacion DROP COLUMN especialidad;
+
+
+SELECT p.*, m.nombre, m.apellido, e.nombre
+FROM programacion p
+JOIN medico m ON p.id_medico = m.id
+JOIN especialidad e ON m.id_especialidad = e.id;
+
+SELECT p.*, m.nombre AS nombre_medico, m.apellido AS apellido_medico, e.nombre AS especialidad
+FROM programacion p
+JOIN medico m ON p.id_medico = m.id
+JOIN especialidad e ON m.id_especialidad = e.id
+ORDER BY p.fecha, p.hora_inicio;
+
+SELECT p.*, m.nombre AS nombre_medico, m.apellido AS apellido_medico, e.nombre AS especialidad
+FROM programacion p
+JOIN medico m ON p.id_medico = m.id
+JOIN especialidad e ON m.id_especialidad = e.id
+ORDER BY p.fecha, p.hora_inicio;
+
+
+select * from paciente;
+	
